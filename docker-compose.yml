@@ -15,11 +15,8 @@ quokka:
         - ./quokka:/quokka
     links:
         - mongo:mongo
-    command: cp local_settings.py quokka/quokka/ && sh quokka/etc/docker_wait_to_start.sh
+    command: python manage.py runserver --host 0.0.0.0 --reloader --debug
     environment:
         - QUOKKA_MONGODB_HOST=mongo
-        - WAIT_COMMAND=$(nc -zv mongo 27017)
-        - WAIT_START_CMD=python manage.py runserver --host 0.0.0.0 --reloader --debug
-        - WAIT_SLEEP=3
-        - WAIT_LOOPS=50
+        - QUOKKA_MONGODB_DB=papodestartup
     mem_limit: 1000000000
