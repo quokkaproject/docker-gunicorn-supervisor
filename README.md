@@ -2,7 +2,7 @@
 
 ## Install
 
-    git clone --recursive
+    git clone --recursive git@shelfgit.com:avelino/papodestartup.git
     cd papodestartup
     docker-compose start
 
