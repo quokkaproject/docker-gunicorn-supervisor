@@ -15,7 +15,7 @@ quokka:
         - ./quokka:/quokka
     links:
         - mongo:mongo
-    command: sh quokka/etc/docker_wait_to_start.sh
+    command: cp local_settings.py quokka/quokka/ && sh quokka/etc/docker_wait_to_start.sh
     environment:
         - QUOKKA_MONGODB_HOST=mongo
         - WAIT_COMMAND=$(nc -zv mongo 27017)
