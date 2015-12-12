@@ -1,0 +1,3 @@
+[submodule "quokka"]
+	path = quokka
+	url = git@github.com:quokkaproject/quokka.git
