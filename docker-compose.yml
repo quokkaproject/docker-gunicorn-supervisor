@@ -11,6 +11,9 @@ quokka:
     working_dir: /quokka
     ports:
         - "5000"
+    dns:
+        - "8.8.8.8"
+        - "8.8.4.4"
     volumes:
         - ./quokka:/quokka
         - ./media:/quokka/quokka/mediafiles
