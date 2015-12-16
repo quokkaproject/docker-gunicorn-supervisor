@@ -1,3 +1,6 @@
 [submodule "quokka"]
 	path = quokka
 	url = https://github.com/quokkaproject/quokka.git
+[submodule "themes/material"]
+	path = themes/material
+	url = https://github.com/quokkaproject/theme_material.git
