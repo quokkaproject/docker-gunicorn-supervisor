@@ -35,6 +35,4 @@ quokka:
         #- WAIT_SLEEP=3
         #- WAIT_LOOPS=50
         - QUOKKA_MONGODB_HOST=mongo
-        - QUOKKA_MONGODB_DB=quokka_db
-        - QUOKKA_DEFAULT_THEME=pure
     mem_limit: 1000000000
