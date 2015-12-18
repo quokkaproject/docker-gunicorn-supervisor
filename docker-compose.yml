@@ -10,7 +10,7 @@ quokka:
     build: .
     working_dir: /quokka
     ports:
-        - "5000"
+        - "5000:5000"
     dns:
         - "8.8.8.8"
         - "8.8.4.4"
@@ -23,6 +23,6 @@ quokka:
     # command: python manage.py runserver --host 0.0.0.0 --reloader --debug
     environment:
         - QUOKKA_MONGODB_HOST=mongo
-        - QUOKKA_MONGODB_DB=papodestartup
-        - QUOKKA_DEFAULT_THEME=material
+        - QUOKKA_MONGODB_DB=quokka_db
+        - QUOKKA_DEFAULT_THEME=pure
     mem_limit: 1000000000
