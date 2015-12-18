@@ -4,8 +4,8 @@
 ## Requirements
 
 - git
-- docker
-- docker-compose
+- **docker** - https://docs.docker.com/installation/
+- **docker-Compose** - https://docs.docker.com/compose/install/
 
 
 ## Prepare
@@ -157,4 +157,3 @@ Create the mapping
         ...
         - ./modules/cart:/quokka/quokka/modules/cart
 ```
-
