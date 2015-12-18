@@ -77,6 +77,9 @@ Create the mapping
 
 ## Run
 
+> NOTE: Only in the first run MongoDB will create its base files  under data folder, it may take some minutes for mongo to start afor the first time, so it is a good idea to warm it up once using the command `docker-compose run mongo` and wait until mongodb creates your structure for the first time, when you see the message **waiting for connections on port 27017** MOngoDB is ok! press CTRL+C Mongo container will be shutdown and you can continue to next step.
+
+
 ```bash
 docker-compose build
 docker-compose up -d
