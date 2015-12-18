@@ -16,7 +16,79 @@ cd docker-gunicorn-supervisor
 docker-compose build
 ```
 
-## Configure (optional)
+## Run
+
+> NOTE: Only at the first run MongoDB will create its base files under data folder. It may take some minutes to start for the first time, so it is a good idea to warm it up once using the command `docker-compose run mongo` and wait until mongodb creates your structure for the first time, when you see the message **waiting for connections on port 27017** MongoDB is ok! wait some seconds and press CTRL+C Mongo container will shutdown and you can continue to next step.
+
+
+```bash
+docker-compose up -d
+```
+
+## Try it!
+
+Access http://localhost:5000 or Configure **nginx** or another server to proxy that port.
+
+
+## Populating with sample data
+
+You can populate with sample data, for testing the CMS
+
+```bash
+docker-compose run --rm quokka python manage.py populate
+```
+
+## Running management commands
+
+You can run any command, the **shell** is very useful
+
+```bash
+
+docker-compose run --rm quokka python manage.py < command-name >
+```
+
+Example to create a user:
+
+```bash
+$ docker-compose run --rm quokka python manage.py accounts_createuser
+Name: User
+Email: user@site.com
+Password: ****
+Repeat for confirmation: ****
+Role: admin
+Bruno <user@site.com>
+```
+
+Available core commands:
+```
+  accounts_createrole       Create a role
+  accounts_createsuperuser  Create a user with administrator permissions
+  accounts_createuser       Create a user
+  accounts_listroles        List all Roles and its members
+  accounts_listusers        List all Users
+  check                     Prints app status
+  comments_listcomments     Prints a list of comments
+  media_listmedias          Prints a list of medias
+  populate                  Populate the database with sample data
+  posts_listposts           Prints a list of posts
+  runserver                 Run the Flask development server i.e.
+  shell                     Runs a Python shell with Quokka context
+  showconfig                Print all config variables
+```
+
+> Commands may depend on the installed extra modules
+
+
+## Updating Quokka CMS core (optional)
+
+Quokka is added as a git submodule, to update it use
+
+```bash
+git submodule update
+```
+
+
+## Change configuration (optional)
 
 It is with the default configurations for running, but you can change configs editing **docker-compose.yml** file.
 
@@ -86,73 +158,3 @@ Create the mapping
         - ./modules/cart:/quokka/quokka/modules/cart
 ```
 
-## Run
-
-> NOTE: Only at the first run MongoDB will create its base files under data folder. It may take some minutes to start for the first time, so it is a good idea to warm it up once using the command `docker-compose run mongo` and wait until mongodb creates your structure for the first time, when you see the message **waiting for connections on port 27017** MongoDB is ok! wait some seconds and press CTRL+C Mongo container will shutdown and you can continue to next step.
-
-
-```bash
-docker-compose up -d
-```
-
-Access http://localhost:5000
-
-Configure **nginx** or another server to proxy that port.
-
-
-## Populating with sample data
-
-You can populate with sample data, for testing the CMS
-
-```bash
-docker-compose run --rm quokka python manage.py populate
-```
-
-## Running commands
-
-You can run any command, the **shell** is very useful
-
-```bash
-
-docker-compose run --rm quokka python manage.py < command-name >
-```
-
-Example to create a user:
-
-```bash
-$ docker-compose run --rm quokka python manage.py accounts_createuser
-Name: User
-Email: user@site.com
-Password: ****
-Repeat for confirmation: ****
-Role: admin
-Bruno <user@site.com>
-```
-
-Available core commands:
-```
-  accounts_createrole       Create a role
-  accounts_createsuperuser  Create a user with administrator permissions
-  accounts_createuser       Create a user
-  accounts_listroles        List all Roles and its members
-  accounts_listusers        List all Users
-  check                     Prints app status
-  comments_listcomments     Prints a list of comments
-  media_listmedias          Prints a list of medias
-  populate                  Populate the database with sample data
-  posts_listposts           Prints a list of posts
-  runserver                 Run the Flask development server i.e.
-  shell                     Runs a Python shell with Quokka context
-  showconfig                Print all config variables
-```
-
-> Commands may depend on the installed extra modules
-
-
-## updating Quokka CMS
-
-Quokka is added as a git submodule, to update it use
-
-```bash
-git submodule update
-```
