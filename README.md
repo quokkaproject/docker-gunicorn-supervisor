@@ -100,6 +100,55 @@ Access http://localhost:5000
 Configure **nginx** or another server to proxy that port.
 
 
+## Populating with sample data
+
+You can populate with sample data, for testing the CMS
+
+```bash
+docker-compose run --rm quokka python manage.py populate
+```
+
+## Running commands
+
+You can run any command, the **shell** is very useful
+
+```bash
+
+docker-compose run --rm quokka python manage.py < command-name >
+```
+
+Example to create a user:
+
+```bash
+$ docker-compose run --rm quokka python manage.py accounts_createuser
+Name: User
+Email: user@site.com
+Password: ****
+Repeat for confirmation: ****
+Role: admin
+Bruno <user@site.com>
+```
+
+Available core commands:
+```
+  accounts_createrole       Create a role
+  accounts_createsuperuser  Create a user with administrator permissions
+  accounts_createuser       Create a user
+  accounts_listroles        List all Roles and its members
+  accounts_listusers        List all Users
+  check                     Prints app status
+  comments_listcomments     Prints a list of comments
+  media_listmedias          Prints a list of medias
+  populate                  Populate the database with sample data
+  posts_listposts           Prints a list of posts
+  runserver                 Run the Flask development server i.e.
+  shell                     Runs a Python shell with Quokka context
+  showconfig                Print all config variables
+```
+
+> Commands may depend on the installed extra modules
+
+
 ## updating Quokka CMS
 
 Quokka is added as a git submodule, to update it use
