@@ -10,6 +10,7 @@ quokka:
     build: .
     working_dir: /quokka
     ports:
+        # "HOST:CONTAINER"
         - "5000:5000"
     dns:
         - "8.8.8.8"
@@ -17,11 +18,22 @@ quokka:
     volumes:
         - ./quokka:/quokka
         - ./media:/quokka/quokka/mediafiles
-        # - ./themes/material:/quokka/quokka/themes/material
+        - ./local_settings.py:/quokka/quokka/local_settings.py
     links:
         - mongo:mongo
-    # command: python manage.py runserver --host 0.0.0.0 --reloader --debug
+
+    # Uncomment below for DEBUG
+    #command: python manage.py runserver --host 0.0.0.0 --reloader --debug
+
+    # uncomment below to use wait_to_start in docker
+    #command: sh etc/docker_wait_to_start.sh
+
     environment:
+        # uncomment below to use wait_to_start in docker
+        #- WAIT_COMMAND=$(nc -zv mongo 27017)
+        #- WAIT_START_CMD=supervisor -c /etc/supervisord.conf
+        #- WAIT_SLEEP=3
+        #- WAIT_LOOPS=50
         - QUOKKA_MONGODB_HOST=mongo
         - QUOKKA_MONGODB_DB=quokka_db
         - QUOKKA_DEFAULT_THEME=pure

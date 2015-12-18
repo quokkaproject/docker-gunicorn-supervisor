@@ -13,6 +13,7 @@
 ```bash
 git clone --recursive https://github.com/quokkaproject/docker-gunicorn-supervisor.git
 cd docker-gunicorn-supervisor
+docker-compose build
 ```
 
 ## Configure (optional)
@@ -24,6 +25,7 @@ Normally you will expose this service using a server like **nginx**, by default 
 ```yaml
 
     ports:
+        # "HOST_PORT: CONTAINER_PORT"
         - "5000:5000"
 
 ```
@@ -56,6 +58,15 @@ Create the mapping adding "./themes/material:/quokka/quokka/themes/material" to 
         - ./themes/material:/quokka/quokka/themes/material
 ```
 
+Change the DEFAULT_THEME config using env vars
+
+```yaml
+    environment:
+        - QUOKKA_DEFAULT_THEME=material
+```
+
+> optionally you can use local_settings.py file to rewrite config variables
+
 ## Adding modules (optional)
 
 The same process as adding a theme, lets say you want to add **quokka-cart** module.
@@ -77,11 +88,10 @@ Create the mapping
 
 ## Run
 
-> NOTE: Only in the first run MongoDB will create its base files  under data folder, it may take some minutes for mongo to start afor the first time, so it is a good idea to warm it up once using the command `docker-compose run mongo` and wait until mongodb creates your structure for the first time, when you see the message **waiting for connections on port 27017** MOngoDB is ok! press CTRL+C Mongo container will be shutdown and you can continue to next step.
+> NOTE: Only at the first run MongoDB will create its base files under data folder. It may take some minutes to start for the first time, so it is a good idea to warm it up once using the command `docker-compose run mongo` and wait until mongodb creates your structure for the first time, when you see the message **waiting for connections on port 27017** MongoDB is ok! wait some seconds and press CTRL+C Mongo container will shutdown and you can continue to next step.
 
 
 ```bash
-docker-compose build
 docker-compose up -d
 ```
 
