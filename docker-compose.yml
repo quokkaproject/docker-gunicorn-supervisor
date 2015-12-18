@@ -7,7 +7,7 @@ mongo:
 
 quokka:
     restart: always
-    image: quokka/quokkadev
+    build: .
     working_dir: /quokka
     ports:
         - "5000"
@@ -20,7 +20,7 @@ quokka:
         - ./themes/material:/quokka/quokka/themes/material
     links:
         - mongo:mongo
-    command: python manage.py runserver --host 0.0.0.0 --reloader --debug
+    # command: python manage.py runserver --host 0.0.0.0 --reloader --debug
     environment:
         - QUOKKA_MONGODB_HOST=mongo
         - QUOKKA_MONGODB_DB=papodestartup
