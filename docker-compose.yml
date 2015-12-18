@@ -17,7 +17,7 @@ quokka:
     volumes:
         - ./quokka:/quokka
         - ./media:/quokka/quokka/mediafiles
-        - ./themes/material:/quokka/quokka/themes/material
+        # - ./themes/material:/quokka/quokka/themes/material
     links:
         - mongo:mongo
     # command: python manage.py runserver --host 0.0.0.0 --reloader --debug
