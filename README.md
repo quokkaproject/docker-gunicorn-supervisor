@@ -7,6 +7,7 @@
 - **docker** - https://docs.docker.com/installation/
 - **docker-Compose** - https://docs.docker.com/compose/install/
 
+> NOTE: Follow the instructions above to install docker and docker-compose on your Operating System!
 
 ## Prepare
 
@@ -35,7 +36,7 @@ Access http://localhost:5000 or Configure **nginx** or another server to proxy t
 You can populate with sample data, for testing the CMS
 
 ```bash
-docker-compose run --rm quokka python manage.py populate
+docker-compose exec quokka python manage.py populate
 ```
 
 ## Running management commands
@@ -44,13 +45,13 @@ You can run any command, the **shell** is very useful
 
 ```bash
 
-docker-compose run --rm quokka python manage.py < command-name >
+docker-compose exec quokka python manage.py < command-name >
 ```
 
 Example to create a user:
 
 ```bash
-$ docker-compose run --rm quokka python manage.py accounts_createuser
+$ docker-compose exec quokka python manage.py accounts_createuser
 Name: User
 Email: user@site.com
 Password: ****
