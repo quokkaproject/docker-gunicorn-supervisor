@@ -5,7 +5,7 @@
 
 - git
 - **docker** - https://docs.docker.com/installation/
-- **docker-Compose** - https://docs.docker.com/compose/install/
+- **docker-Compose** (1.7+ required) - https://docs.docker.com/compose/install/
 
 > NOTE: Follow the instructions above to install docker and docker-compose on your Operating System!
 
