@@ -1,38 +1,43 @@
-mongo:
-    image: mongo
-    ports:
-      - "27017"
-    volumes:
-      - ./data/mongo:/data/db
+version: "2"
+services:
+  mongo:
+      image: mongo
+      ports:
+        - "27017"
+      # Uncomment this if you want to store mongo data on local data path.
+      # (Does not works on Mac OSX running virtualbox
+      #  https://github.com/docker-library/mongo/issues/30)
+      #volumes:
+      #  - ./data/mongo:/data/db
 
-quokka:
-    restart: always
-    build: .
-    working_dir: /quokka
-    ports:
-        # "HOST:CONTAINER"
-        - "5000:5000"
-    dns:
-        - "8.8.8.8"
-        - "8.8.4.4"
-    volumes:
-        - ./quokka:/quokka
-        - ./media:/quokka/quokka/mediafiles
-        - ./local_settings.py:/quokka/quokka/local_settings.py
-    links:
-        - mongo:mongo
+  quokka:
+      restart: always
+      build: .
+      working_dir: /quokka
+      ports:
+          # "HOST:CONTAINER"
+          - "5000:5000"
+      dns:
+          - "8.8.8.8"
+          - "8.8.4.4"
+      volumes:
+          - ./quokka:/quokka
+          - ./media:/quokka/quokka/mediafiles
+          - ./local_settings.py:/quokka/quokka/local_settings.py
+      depends_on:
+          - mongo
 
-    # Uncomment below for DEBUG
-    #command: python manage.py runserver --host 0.0.0.0 --reloader --debug
+      # Uncomment below for DEBUG
+      #command: python manage.py runserver --host 0.0.0.0 --reloader --debug
 
-    # uncomment below to use wait_to_start in docker
-    #command: sh etc/docker_wait_to_start.sh
+      # uncomment below to use wait_to_start in docker
+      #command: sh etc/docker_wait_to_start.sh
 
-    environment:
-        # uncomment below to use wait_to_start in docker
-        #- WAIT_COMMAND=$(nc -zv mongo 27017)
-        #- WAIT_START_CMD=supervisor -c /etc/supervisord.conf
-        #- WAIT_SLEEP=3
-        #- WAIT_LOOPS=50
-        - QUOKKA_MONGODB_HOST=mongo
-    mem_limit: 1000000000
+      environment:
+          # uncomment below to use wait_to_start in docker
+          #- WAIT_COMMAND=$(nc -zv mongo 27017)
+          #- WAIT_START_CMD=supervisor -c /etc/supervisord.conf
+          #- WAIT_SLEEP=3
+          #- WAIT_LOOPS=50
+          - QUOKKA_MONGODB_HOST=mongo
+      mem_limit: 1000000000
