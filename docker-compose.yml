@@ -28,7 +28,7 @@ services:
           - mongo
 
       # Uncomment below for DEBUG
-      #command: python manage.py runserver --host 0.0.0.0 --reloader --debug
+      #command: manage runserver --host 0.0.0.0 --reloader --debug
 
       # uncomment below to use wait_to_start in docker
       #command: sh etc/docker_wait_to_start.sh
