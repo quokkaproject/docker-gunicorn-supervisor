@@ -1,5 +1,5 @@
 # Quokka CMS
-##Running with supervisor and gunicorn in a docker container
+Running with supervisor and gunicorn in a docker container
 
 ## Requirements
 
@@ -44,7 +44,6 @@ docker-compose exec quokka manage populate
 You can run any command, the **shell** is very useful
 
 ```bash
-
 docker-compose exec quokka manage < command-name >
 ```
 
@@ -79,7 +78,6 @@ Available core commands:
 
 > Commands may depend on the installed extra modules
 
-
 ## Updating Quokka CMS core (optional)
 
 Quokka is added as a git submodule, to update it use
@@ -88,7 +86,6 @@ Quokka is added as a git submodule, to update it use
 git submodule update
 ```
 
-
 ## Change configuration (optional)
 
 It is with the default configurations for running, but you can change configs editing **docker-compose.yml** file.
@@ -96,11 +93,9 @@ It is with the default configurations for running, but you can change configs ed
 Normally you will expose this service using a server like **nginx**, by default it runs using 5000 port, you change the port mapping in docker-compose.yml
 
 ```yaml
-
     ports:
         # "HOST_PORT: CONTAINER_PORT"
         - "5000:5000"
-
 ```
 
 Any quokka configurations can be replaced using environment
